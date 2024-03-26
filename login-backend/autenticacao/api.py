@@ -2,12 +2,17 @@ from ninja import NinjaAPI,Schema
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from typing import Dict
+from ninja.security import django_auth
 
 api = NinjaAPI()
 
 @api.get('teste/')
 def teste(request):
     return 1
+
+@api.get('logado/',auth=django_auth)
+def teste(request):
+    return 'Usuário logado'
 
 class UserSchema(Schema):
     username:str
