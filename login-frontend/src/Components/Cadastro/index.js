@@ -1,11 +1,10 @@
-import { useState } from "react"
 import Form from "../Form"
-import "./Login.css"
+import "../Login/Login.css"
 
-const Login = () => {
+const Cadastro = () => {
     
-    const fazerLogin = async (dados) => {
-        const conexaoAPI = await fetch('http://127.0.0.1:8000/api/login/',{
+    const cadastrarUsuario = async (dados) => {
+        const conexaoAPI = await fetch('http://127.0.0.1:8000/api/register/',{
             method:'POST',
             headers:{
                 'Content-type':'application/json'
@@ -15,7 +14,7 @@ const Login = () => {
                 password: dados.senha
             })
         })
-        if (conexaoAPI.status === 200){
+        if (conexaoAPI.status === 201){
             alert('logado')
             return
         }
@@ -29,7 +28,7 @@ const Login = () => {
     return(
         <section className="container_login">
             <div className="container_form">
-                <Form enviarDados = {dados => fazerLogin(dados)}>
+                <Form enviarDados = {dados => cadastrarUsuario(dados)}>
                 </Form>
             </div>
         
@@ -37,4 +36,4 @@ const Login = () => {
     )   
 }
 
-export default Login
+export default Cadastro
