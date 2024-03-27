@@ -10,10 +10,10 @@ const Index = () => {
                 <h1>Acontecendo Agora</h1>
                 <h2>Entre ou cadastre-se</h2>
                 <button>
-                    <Link className="link" to={'/cadastro'}>Entre</Link>
+                    <Link className="link" to={'/login'}>Entre</Link>
                 </button>
                 <button>
-                    <Link className="link" to={'/login'}>Cadastre-se</Link>
+                    <Link className="link" to={'/cadastro'}>Cadastre-se</Link>
                 </button>
 
             </div>

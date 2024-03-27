@@ -4,19 +4,15 @@ const loginUsuario = async (dados) => {
     const conexao = await fetch(urlLogin, {
         method: 'POST',
         headers: {
-            'Content-type': 'application/json'
+            'Content-type': 'application/json',
         },
         body: JSON.stringify({
             username: dados.nomeUsuario,
             password: dados.senha
         })
     })
-    if (!conexao.status === 200) {
-        return (
-            <div>
-                <h1>Usuário/Senha não encontrados</h1>
-            </div>
-        )
+    if (conexao.status === 200) {
+        window.alert('logado')
     }
     else {
         const teste = await fetch(urlTeste)

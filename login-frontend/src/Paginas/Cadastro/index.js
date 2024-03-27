@@ -5,6 +5,7 @@ import { cadastroUsuario } from "../../Api/Requests/apiRequests"
 const Cadastro = () => {
     const fazerCadastro = (dados) =>{
         cadastroUsuario(dados)
+        console.log(dados)
     }
     
     return(
