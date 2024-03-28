@@ -1,10 +1,13 @@
 import Form from "../../Components/Form"
 import "./Login.css"
-import { loginUsuario } from "../../Api/Requests/apiRequests"
+import { gerarTokenAcesso, loginUsuario } from "../../Api/Requests/apiRequests"
 
 const Login = () => {
-    const fazerLogin = (dados) =>{
-        loginUsuario(dados)
+    const fazerLogin = async (dados) =>{
+        const token = await gerarTokenAcesso(dados)
+        const login = await loginUsuario(token)
+        console.log(login)
+        
     }
 
     return(

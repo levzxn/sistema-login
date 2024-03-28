@@ -1,6 +1,6 @@
 import { urlCadastro, urlLogin, urlTeste } from "../Config/apiConfig.js";
 
-const loginUsuario = async (dados) => {
+const gerarTokenAcesso = async (dados) => {
     const conexao = await fetch(urlLogin, {
         method: 'POST',
         headers: {
@@ -11,15 +11,31 @@ const loginUsuario = async (dados) => {
             password: dados.senha
         })
     })
-    if (conexao.status === 200) {
-        window.alert('logado')
+    try{
+        const token = await conexao.json()
+        return token
     }
-    else {
-        const teste = await fetch(urlTeste)
-        const json = teste.json()
-        console.log(json)
+    catch(error){
+        return error
     }
 }
+
+const loginUsuario = async (token) => {
+    const teste = await fetch(urlTeste, {
+        method: 'GET',
+        headers:{
+            'Authorization':`Bearer ${token}`
+        }
+    })
+    try{
+        const dadosLogin = await teste.json()
+        return dadosLogin
+    }
+    catch(error){
+        return error
+    }
+}
+
 
 const cadastroUsuario = async (dados) => {
     const conexao = await fetch(urlCadastro, {
@@ -35,4 +51,4 @@ const cadastroUsuario = async (dados) => {
     return conexao
 }
 
-export { loginUsuario, cadastroUsuario }
+export { gerarTokenAcesso, cadastroUsuario, loginUsuario }
